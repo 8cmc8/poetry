@@ -1,0 +1,23 @@
+.second {
+    position: relative;
+    float: left;
+    width: 500px;
+    height: 30px;
+    margin: 20px 0 0 65px;
+    padding: 0 20px;
+    line-height: 28px;
+    background: #fdfdfd;
+    border: 1px solid #d6d6d6;
+    background-color: lightblue;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.gutter-example .ant-row > div {
+  background: transparent;
+  border: 0;
+}
+.gutter-box {
+  background: #00A0E9;
+  padding: 5px 0;
+}
+
