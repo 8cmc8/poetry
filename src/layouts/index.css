@@ -13,3 +13,8 @@
   color: white;
   margin: 0;
 }
+.menu { 
+  background: '#000';
+  textAlign: 'center';
+  padding: 0 
+}

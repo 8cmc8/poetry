@@ -20,8 +20,8 @@ class MyCourseList extends React.Component {
                                     title="课程名"
                                 />
                                 <div style={{ paddingTop: 5 }}>
-                                    ￥88.88
-                    <Icon type='user' style={{ paddingLeft: 20 }} />111
+                                    ￥价格
+                    <Icon type='user' style={{ paddingLeft: 20 }} />报名人数
                     <Icon type="star" theme="filled" style={{ color: 'yellow', paddingLeft: 20 }} />
                                     <Icon type="star" theme="filled" style={{ color: 'yellow' }} />
                                     <Icon type="star" theme="filled" style={{ color: 'yellow' }} />
@@ -41,8 +41,8 @@ class MyCourseList extends React.Component {
                                     title="课程名"
                                 />
                                 <div style={{ paddingTop: 5 }}>
-                                    ￥88.88
-                    <Icon type='user' style={{ paddingLeft: 20 }} />111
+                                    ￥价格
+                    <Icon type='user' style={{ paddingLeft: 20 }} />报名人数
                     <Icon type="star" theme="filled" style={{ color: 'yellow', paddingLeft: 20 }} />
                                     <Icon type="star" theme="filled" style={{ color: 'yellow' }} />
                                     <Icon type="star" theme="filled" style={{ color: 'yellow' }} />
@@ -62,8 +62,8 @@ class MyCourseList extends React.Component {
                                     title="课程名"
                                 />
                                 <div style={{ paddingTop: 5 }}>
-                                    ￥88.88
-                    <Icon type='user' style={{ paddingLeft: 20 }} />111
+                                    ￥价格
+                    <Icon type='user' style={{ paddingLeft: 20 }} />报名人数
                     <Icon type="star" theme="filled" style={{ color: 'yellow', paddingLeft: 20 }} />
                                     <Icon type="star" theme="filled" style={{ color: 'yellow' }} />
                                     <Icon type="star" theme="filled" style={{ color: 'yellow' }} />
@@ -83,8 +83,8 @@ class MyCourseList extends React.Component {
                                     title="课程名"
                                 />
                                 <div style={{ paddingTop: 5 }}>
-                                    ￥88.88
-                    <Icon type='user' style={{ paddingLeft: 20 }} />111
+                                    ￥价格
+                    <Icon type='user' style={{ paddingLeft: 20 }} />报名人数
                     <Icon type="star" theme="filled" style={{ color: 'yellow', paddingLeft: 20 }} />
                                     <Icon type="star" theme="filled" style={{ color: 'yellow' }} />
                                     <Icon type="star" theme="filled" style={{ color: 'yellow' }} />

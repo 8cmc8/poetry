@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 import '../css/index.css';
+import Link from 'umi/link';
 
 class Category extends React.Component {
     render() {
@@ -8,10 +9,12 @@ class Category extends React.Component {
             <div className="gutter-example">
                 <Row gutter={16}>
                     <Col align="center" className="gutter-row" span={6}>
-                        <div className="gutter-box">
-                        <img height="200" width="200" alt="" src={require("../../assets/5.jpg")}></img>
-                        </div>
-                        <div>子类目名</div>
+                        <Link to='/library'>
+                            <div className="gutter-box">
+                                <img height="200" width="200" alt="" src={require("../../assets/5.jpg")}></img>
+                            </div>
+                            <div>子类目名</div>
+                        </Link>
                     </Col>
                     <Col align="center" className="gutter-row" span={6}>
                         <div className="gutter-box">

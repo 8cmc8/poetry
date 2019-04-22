@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel, Row, Col, Pagination } from 'antd';
+import { Carousel, Row, Col, Pagination, Icon } from 'antd';
 import News from './news';
 
 class MyCarousel extends React.Component {
@@ -15,7 +15,7 @@ class MyCarousel extends React.Component {
                         </Carousel>
                     </Col>
                     <Col span={8}>
-                        <div align="center" style={{fontSize:20, fontFamily: "Gill Sans", color:"red"}}>资讯通告</div>
+                        <div align="center" style={{fontSize:20, fontFamily: "Gill Sans"}}>资讯通告&nbsp;&nbsp;&nbsp;<Icon type="sound" theme="filled" /></div>
                         <div><News/><div align="center" ><Pagination simple defaultCurrent={1} total={50} /></div></div>
                     </Col>
                 </Row>

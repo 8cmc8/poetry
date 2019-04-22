@@ -29,7 +29,7 @@ class MyCommunity extends React.Component {
 
             <div className="card-container">
                 <Tabs defaultActiveKey="1" type="line">
-                    <TabPane tab={<span><Icon type="home" />社区</span>} key="1">
+                    <TabPane tab={<span><Icon type="usergroup-add" />社区</span>} key="1">
                         <List
                             itemLayout="vertical"
                             size="large"

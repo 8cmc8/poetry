@@ -29,7 +29,7 @@ class MyGame extends React.Component {
 
             <div className="card-container">
                 <Tabs defaultActiveKey="1" type="line">
-                    <TabPane tab={<span><Icon type="home" />游戏</span>} key="1">
+                    <TabPane tab={<span><Icon type="rocket" />游戏</span>} key="1">
                         <List
                             itemLayout="vertical"
                             size="large"
@@ -57,7 +57,7 @@ class MyGame extends React.Component {
                             )}
                         />
                     </TabPane>
-                    <TabPane tab={<span><Icon type="home" />接龙</span>} key="2">
+                    <TabPane tab={<span><Icon type="rocket" />接龙</span>} key="2">
                         <List
                             itemLayout="vertical"
                             size="large"
@@ -85,7 +85,7 @@ class MyGame extends React.Component {
                             )}
                         />
                     </TabPane>
-                    <TabPane tab={<span><Icon type="home" />飞花</span>} key="3">
+                    <TabPane tab={<span><Icon type="rocket" />飞花</span>} key="3">
                         <List
                             itemLayout="vertical"
                             size="large"
