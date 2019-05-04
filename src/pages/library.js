@@ -1,7 +1,7 @@
 
 import Library from '../components/index/library';
 
-export default function() {
+export default () => {
   return (
     <div>
       

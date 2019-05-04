@@ -3,7 +3,7 @@ import CourseList from '../components/index/courseList';
 import { Icon, Tabs } from 'antd';
 const TabPane = Tabs.TabPane;
 
-export default function () {
+export default () => {
     return (
         <div className="card-container">
             <Tabs defaultActiveKey="1" type="line">

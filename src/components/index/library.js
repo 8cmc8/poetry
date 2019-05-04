@@ -1,30 +1,52 @@
 import React from 'react';
 import { Tabs, Icon } from 'antd';
 import Category from './category';
+import { connect } from 'dva';
 
 const TabPane = Tabs.TabPane;
+const namespace = 'poetryCategory';
 
+const mapStateToProps = (state) => {
+  const rootCategory = state[namespace].root;
+  return {
+    rootCategory,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDidMount: () => {
+      const action = {
+        type: `${namespace}/getRootList`,
+      };
+      dispatch(action);
+    },
+  };
+};
+
+@connect(mapStateToProps, mapDispatchToProps)
 class MyLibrary extends React.Component {
-    render() {
+
+  componentDidMount() {
+    this.props.onDidMount();
+  }
+
+
+
+  render() {
         return (
                 
                 <div className="card-container">
-                    <Tabs defaultActiveKey="1" type="line">
-                    <TabPane tab={<span><Icon type="book" />选集</span>} key="1">
-                        <Category/>
-                    </TabPane>
-                    <TabPane tab={<span><Icon type="book" />主题</span>} key="2">
-                        <Category/>
-                    </TabPane>
-                    <TabPane tab={<span><Icon type="book" />写景</span>} key="3">
-                        <Category />
-                    </TabPane>
-                    <TabPane tab={<span><Icon type="book" />节日</span>} key="4">
-                        <Category />
-                    </TabPane>
-                    <TabPane tab={<span><Icon type="book" />节气</span>} key="5">
-                        <Category />
-                    </TabPane>
+                    <Tabs defaultActiveKey="0" type="line" >
+                      {
+                        this.props.rootCategory.map( (root,key) =>{
+                          return(
+                            <TabPane tab={<span><Icon type="book" />{root.rootCategoryName}</span>} key={key}>
+                              <Category rootName={root.rootCategoryName}/>
+                            </TabPane>
+                          )
+                        })
+                      }
                     </Tabs>
                 </div>
         );

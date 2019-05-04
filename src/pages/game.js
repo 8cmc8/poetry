@@ -1,7 +1,7 @@
 import Game from '../components/index/game';
 
 
-export default function() {
+export default () => {
   return (
     <div>
       

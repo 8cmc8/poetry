@@ -2,7 +2,7 @@
 import Community from '../components/index/community';
 
 
-export default function() {
+export default () => {
   return (
     <div>
       

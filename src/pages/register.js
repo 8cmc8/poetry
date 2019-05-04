@@ -5,7 +5,7 @@ import {
     Form, Input, Row, Col, Button,message
 } from 'antd';
 // import TimedButton from '../components/TimedButton'
-// import { register } from '../services/UserService'
+import { register } from '../services/UserService'
 
 class RegistrationForm extends React.Component {
     state = {
@@ -27,28 +27,27 @@ class RegistrationForm extends React.Component {
     }
 
     handleRegister = (e) => {
-        // e.preventDefault();
-        // this.props.form.validateFieldsAndScroll((err, values) => {
-        //     let temp = values;
-        //     if (temp.userName === undefined || temp.password === undefined
-        //         || temp.tel === undefined || temp.code === undefined) {
-        //         return;
-        //     }
-        //     let passwordLength =  temp.password.length;
-        //     if (passwordLength < 8||passwordLength > 13){
-        //         message.error('密码长度应在8-12位！');
-        //         return;
-        //     }
-        //     register(temp).then((result) => {
-        //         console.log(result);
-        //         if (result.code === '200') {
-        //             message.success('注册成功，即将跳转到登录界面');
-        //             router.push('/login');
-        //         } else {
-        //             message.error(result.msg);
-        //         }
-        //     })
-        // });
+        e.preventDefault();
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            let temp = values;
+            if (temp.userName === undefined || temp.password === undefined) {
+                return;
+            }
+            let passwordLength =  temp.password.length;
+            if (passwordLength < 8||passwordLength > 13){
+                message.error('密码长度应在8-12位！');
+                return;
+            }
+            register(temp).then((result) => {
+                console.log(result);
+                if (result.code === '200') {
+                    message.success('注册成功');
+                    router.push('/login');
+                } else {
+                    message.error(result.msg);
+                }
+            })
+        });
     }
 
     handleConfirmBlur = (e) => {
@@ -149,22 +148,22 @@ class RegistrationForm extends React.Component {
                                     <Input onChange={this.handleChangeTel}/>
                                 )}
                             </Form.Item> */}
-                            <Form.Item
-                                label="验证码"
-                            >
-                                <Row gutter={8}>
-                                    <Col span={12}>
-                                        {getFieldDecorator('code', {
-                                            rules: [{ required: true, message: '请输入验证码!' }],
-                                        })(
-                                            <Input />
-                                        )}
-                                    </Col>
-                                    <Col span={12}>
-                                        {/* <TimedButton tel={this.state.tel}>获取验证码</TimedButton> */}
-                                    </Col>
-                                </Row>
-                            </Form.Item>
+                            {/*<Form.Item*/}
+                            {/*    label="验证码"*/}
+                            {/*>*/}
+                            {/*    <Row gutter={8}>*/}
+                            {/*        <Col span={12}>*/}
+                            {/*            {getFieldDecorator('code', {*/}
+                            {/*                rules: [{ required: true, message: '请输入验证码!' }],*/}
+                            {/*            })(*/}
+                            {/*                <Input />*/}
+                            {/*            )}*/}
+                            {/*        </Col>*/}
+                            {/*        <Col span={12}>*/}
+                            {/*            /!* <TimedButton tel={this.state.tel}>获取验证码</TimedButton> *!/*/}
+                            {/*        </Col>*/}
+                            {/*    </Row>*/}
+                            {/*</Form.Item>*/}
                             <Form.Item {...tailFormItemLayout}>
                                 <Button type="primary" htmlType="submit" className={styles.register_form_button}>注册</Button>
             

@@ -2,65 +2,53 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import '../css/index.css';
 import Link from 'umi/link';
+import { connect } from 'dva';
 
+const namespace = 'poetryCategoryChild';
+
+const mapStateToProps = (state) => {
+  const childCategory = state[namespace].child;
+  return {
+    childCategory,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDidMount: (rootName) => {
+      const action = {
+        type: `${namespace}/getChildList`,
+        payload: rootName
+      };
+      dispatch(action);
+    },
+  };
+};
+
+@connect(mapStateToProps, mapDispatchToProps)
 class Category extends React.Component {
-    render() {
+
+  componentDidMount() {
+    this.props.onDidMount(this.props.rootName);
+  }
+
+
+  render() {
         return (
             <div className="gutter-example">
                 <Row gutter={16}>
-                    <Col align="center" className="gutter-row" span={6}>
-                        <Link to='/library'>
-                            <div className="gutter-box">
-                                <img height="200" width="200" alt="" src={require("../../assets/5.jpg")}></img>
-                            </div>
-                            <div>子类目名</div>
+                  {
+                    this.props.childCategory.map((child,key)=>{
+                      return(<Col align="center" className="gutter-row" span={6}>
+                        <Link to={'/poetryList?name='+child.childCategoryName}>
+                          <div className="gutter-box">
+                            <img height="200" width="150" alt="" src={child.imageUrl}></img>
+                          </div>
+                          <div>{child.childCategoryName}</div>
                         </Link>
-                    </Col>
-                    <Col align="center" className="gutter-row" span={6}>
-                        <div className="gutter-box">
-                        <img height="200" width="200" alt="" src={require("../../assets/5.jpg")}></img>
-                        </div>
-                        <div>子类目名</div>
-                    </Col>
-                    <Col align="center" className="gutter-row" span={6}>
-                        <div className="gutter-box">
-                        <img height="200" width="200" alt="" src={require("../../assets/5.jpg")}></img>
-                        </div>
-                        <div>子类目名</div>
-                    </Col>
-                    <Col align="center" className="gutter-row" span={6}>
-                        <div className="gutter-box">
-                        <img height="200" width="200" alt="" src={require("../../assets/5.jpg")}></img>
-                        </div>
-                        <div>子类目名</div>
-                    </Col>
-                </Row>
-                <br/><br/><br/>
-                <Row gutter={16}>
-                    <Col align="center" className="gutter-row" span={6}>
-                        <div className="gutter-box">
-                        <img height="200" width="200" alt="" src={require("../../assets/5.jpg")}></img>
-                        </div>
-                        <div>子类目名</div>
-                    </Col>
-                    <Col align="center" className="gutter-row" span={6}>
-                        <div className="gutter-box">
-                        <img height="200" width="200" alt="" src={require("../../assets/5.jpg")}></img>
-                        </div>
-                        <div>子类目名</div>
-                    </Col>
-                    <Col align="center" className="gutter-row" span={6}>
-                        <div className="gutter-box">
-                        <img height="200" width="200" alt="" src={require("../../assets/5.jpg")}></img>
-                        </div>
-                        <div>子类目名</div>
-                    </Col>
-                    <Col align="center" className="gutter-row" span={6}>
-                        <div className="gutter-box">
-                        <img height="200" width="200" alt="" src={require("../../assets/5.jpg")}></img>
-                        </div>
-                        <div>子类目名</div>
-                    </Col>
+                      </Col>)
+                    })
+                  }
                 </Row>
             </div>
         );

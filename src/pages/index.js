@@ -6,7 +6,7 @@ import Community from '../components/index/community';
 import Game from '../components/index/game';
 // import { Divider } from 'antd';
 
-export default function() {
+export default () => {
   return (
     <div>
       <Carousel/>

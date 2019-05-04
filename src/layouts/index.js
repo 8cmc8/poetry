@@ -1,18 +1,32 @@
 
-import { Layout, Menu, Input, Row, Col, Divider, BackTop } from 'antd';
+import { Layout, Menu, Input, Row, Col, Divider, BackTop,Icon } from 'antd';
 import Link from 'umi/link';
-import styles from './index.css';
+import { getCookie,delCookie } from '../utils/cookie.js';
 
 const Search = Input.Search;
 const {
   Header, Footer, Content
 } = Layout;
-function BasicLayout(props) {
+function logout() {
+
+  delCookie('userName');
+  delCookie('ACCESS_TOKEN');
+  delCookie('admin');
+}
+ const BasicLayout = (props)=> {
 
   return (
     <Layout style={{ background: '#fff' }} >
       <Header style={{ background: '#fff', textAlign: 'center', padding: 0 }}>
-        <Menu mode="horizontal" style={{ background: '#0050844', textAlign: 'center', padding: 0 }} theme="dark">
+        <Menu mode="horizontal" style={{ background: '#0050844', textAlign: 'center', padding: 0 }} theme="light">
+          <Menu.Item style={{ paddingLeft: 100 }} />
+          <Menu.Item key="x" >
+            <Link to="/">
+              <div style={{ fontSize: 25 }}>
+                诗词鉴赏平台
+              </div>
+            </Link>
+          </Menu.Item>
           <Menu.Item style={{ paddingLeft: 100 }} />
           <Menu.Item key="home">
             <Link to="/">首页</Link>
@@ -29,15 +43,7 @@ function BasicLayout(props) {
           <Menu.Item key="game">
             <Link to="/game">娱乐</Link>
           </Menu.Item>
-          <Menu.Item style={{ paddingLeft: 100 }} />
-          <Menu.Item key="x" >
-            <Link to="/">
-              <div style={{ fontSize: 25 }}>
-                诗词鉴赏平台
-                        </div>
-            </Link>
 
-          </Menu.Item>
           <Menu.Item style={{ paddingLeft: 150 }} />
           <Menu.Item>
             <Search
@@ -47,13 +53,26 @@ function BasicLayout(props) {
             />
           </Menu.Item>
           <Menu.Item style={{ paddingLeft: 50 }} />
-          <Menu.Item>
-          <Link to="/login">登录/注册</Link>
-          </Menu.Item>
-          <Menu.Item>
-
-          </Menu.Item>
-          <Menu.Item style={{ paddingLeft: 50 }} />
+          {
+            getCookie('ACCESS_TOKEN') !== undefined && getCookie('ACCESS_TOKEN') !== '' ?
+              <Menu.Item key="userInfo">
+                <Link to="/userInfo">{getCookie('ACCESS_TOKEN')}，欢迎您</Link>
+              </Menu.Item>
+              :
+              <Menu.Item key="login">
+                <Link to="/login">登录</Link>
+              </Menu.Item>
+          }
+          {
+            getCookie('ACCESS_TOKEN') !== undefined && getCookie('ACCESS_TOKEN') !== '' ?
+              <Menu.Item key="logout">
+                <Link to='/' onClick={logout}>退出</Link>
+              </Menu.Item>
+              :
+              <Menu.Item key="register">
+                <Link to="/register">注册</Link>
+              </Menu.Item>
+          }
         </Menu>
       </Header>
       <Content >
