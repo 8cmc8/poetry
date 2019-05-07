@@ -40,3 +40,23 @@ export function getAllSimpleList() {
   };
   return request(url, options);
 }
+export function getAllSimpleListByName(name) {
+  let url = 'api/poetry/simpleListByName?name='+name;
+  let options = {
+    method: 'get',
+    headers: {
+      'Content-type': 'application/json; charset=utf-8',
+    },
+  };
+  return request(url, options);
+}
+export function getDetailById(id) {
+  let url = 'api/poetry/detail?id='+id;
+  let options = {
+    method: 'get',
+    headers: {
+      'Content-type': 'application/json; charset=utf-8',
+    },
+  };
+  return request(url, options);
+}
