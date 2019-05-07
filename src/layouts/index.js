@@ -32,7 +32,7 @@ function logout() {
             <Link to="/">首页</Link>
           </Menu.Item>
           <Menu.Item key="library">
-            <Link to="/library">文库</Link>
+            <Link to="/poetryList">文库</Link>
           </Menu.Item>
           <Menu.Item key="course">
             <Link to="/course">课程</Link>

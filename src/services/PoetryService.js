@@ -20,3 +20,23 @@ export function getChild(rootName) {
   };
   return request(url, options);
 }
+export function getRootAndChild() {
+  let url = 'api/category/rootAndChild';
+  let options = {
+    method: 'get',
+    headers: {
+      'Content-type': 'application/json; charset=utf-8',
+    },
+  };
+  return request(url, options);
+}
+export function getAllSimpleList() {
+  let url = 'api/poetry/simpleListAll';
+  let options = {
+    method: 'get',
+    headers: {
+      'Content-type': 'application/json; charset=utf-8',
+    },
+  };
+  return request(url, options);
+}
