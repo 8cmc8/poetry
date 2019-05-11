@@ -7,6 +7,14 @@ import { login } from '../services/UserService'
 import { setCookie } from '../utils/cookie.js';
 
 class LoginForm extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state={
+      flag:this.props.location.query.id,
+      flag2:this.props.location.query.courseId
+    }
+  }
   componentWillUpdate() {
     document.getElementById('root').scrollIntoView(true);//为ture返回顶部，false为底部
   };
@@ -14,15 +22,20 @@ class LoginForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       let temp = values;
-      if (temp.username === undefined || temp.password === undefined) {
+      if (temp.userName === undefined || temp.password === undefined) {
         return;
       }
+      console.log(temp);
       login(temp).then((result) => {
         console.log(result);
         if (result.code === '200') {
           message.success('登录成功!');
           setCookie("ACCESS_TOKEN", result.data);
-          router.push('/');
+          if(this.state.flag === ''||this.state.flag === undefined){
+            router.push('/');
+          }else{
+            router.push('/poetryDetail?id='+this.state.flag);
+          }
         } else {
           message.error(result.msg);
         }
@@ -39,7 +52,7 @@ class LoginForm extends React.Component {
           <Col offset={8} span={8} align='middle'>
             <Form onSubmit={this.handleLogin.bind(this)} className={styles.login_form}>
               <Form.Item>
-                {getFieldDecorator('username', {
+                {getFieldDecorator('userName', {
                   rules: [{ required: true, message: '请输入用户名!' }],
                 })(
                   <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />

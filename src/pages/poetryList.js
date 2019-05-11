@@ -5,6 +5,7 @@ import {
   Layout, Menu, Breadcrumb, Icon, Card,
 } from 'antd';
 import { getAllSimpleList, getAllSimpleListByName, getRootAndChild } from '@/services/PoetryService';
+import router from 'umi/router';
 const { SubMenu } = Menu;
 const {
   Header, Content, Footer, Sider,
@@ -21,8 +22,9 @@ class poetryList extends React.Component{
     super(props);
     this.state = {
       urlKey:this.props.location.query.name,
+      rootName:this.props.location.query.rootName,
       simpleList:[],
-      key:'',
+      key:this.props.location.query.name,
       childKey:'',
       data:[]
     };
@@ -31,11 +33,8 @@ class poetryList extends React.Component{
         data:result.data
       })
     });
-    getAllSimpleList().then((result)=>{
-      this.setState({
-        simpleList:result.data
-      })
-    });
+
+    this.getSimpleList();
   }
 
   getAllByName(name){
@@ -46,6 +45,17 @@ class poetryList extends React.Component{
     })
   }
 
+  getSimpleList(){
+    if (this.state.key === '' || this.state.key === undefined){
+      getAllSimpleList().then((result)=>{
+        this.setState({
+          simpleList:result.data
+        })
+      });
+    }else{
+      this.getAllByName(this.state.key);
+    }
+  }
 
   render() {
     return(
@@ -55,8 +65,8 @@ class poetryList extends React.Component{
             <Menu
               onClick={this.handleClick}
               style={{ width: 256 }}
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={[this.state.urlKey]}
+              defaultSelectedKeys={[this.state.urlKey]}
+              defaultOpenKeys={[this.state.rootName]}
               mode="inline"
             >
               {
@@ -67,10 +77,13 @@ class poetryList extends React.Component{
                         data.child.map((child)=>{
                           return(
                             <Menu.Item key={child.categoryName} onClick={(key)=>{
+
                               this.setState({
-                                key:child.categoryName
+                                key:child.categoryName,
+                                rootName:data.root.categoryName
                               });
-                              this.getAllByName(child.categoryName)
+                              this.getAllByName(child.categoryName);
+                              router.push('/poetryList?name='+child.categoryName+'&rootName='+data.root.categoryName)
                             }
                             }>{child.categoryName}</Menu.Item>
                           )
@@ -87,7 +100,7 @@ class poetryList extends React.Component{
               {
                 this.state.simpleList.map((data)=>{
                   return(
-                    <Link to={'/poetryDetail?id='+ data.id}>
+                    <Link to={'/poetryDetail?rootName='+this.state.rootName+'&childName='+this.state.key+'&id='+data.id}>
                     <Card.Grid style={gridStyle} >
                       <div>
                         《{data.poetryName}》

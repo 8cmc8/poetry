@@ -63,10 +63,11 @@ class MyLibrary extends React.Component {
                 <TabPane tab={<span><Icon type="book" />{data.root.categoryName}</span>} key={data.root.categoryName}>
                   <Row gutter={16}>
                     {
+
                       data.child.map((child)=>{
                         return(
                           <Col align="center" className="gutter-row" span={6}>
-                            <Link to={"/poetryList?name="+child.categoryName}>
+                            <Link to={"/poetryList?name="+child.categoryName+'&rootName='+data.root.categoryName}>
                               <div className="gutter-box">
                                 <img height={200} width={150} src={child.imageUrl}/>
                                 <div >{child.categoryName}</div>

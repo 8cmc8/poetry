@@ -1,7 +1,7 @@
 import request from '../utils/request';
 
-export function getRoot() {
-  let url = 'api/category/root';
+export function getAllCourseList() {
+  let url = 'api/course/listAll';
   let options = {
     method: 'get',
     headers: {
@@ -10,8 +10,8 @@ export function getRoot() {
   };
   return request(url, options);
 }
-export function getChild(rootName) {
-  let url = 'api/category/child?rootCategoryName=' + rootName ;
+export function getCourseDetailById(courseId) {
+  let url = 'api/course/detail?id='+ courseId;
   let options = {
     method: 'get',
     headers: {
@@ -20,8 +20,20 @@ export function getChild(rootName) {
   };
   return request(url, options);
 }
-export function getRootAndChild() {
-  let url = 'api/category/rootAndChild';
+export function courseCollection(userInfo) {
+  userInfo = JSON.stringify(userInfo);
+  let url = 'api/course/collection';
+  let options = {
+    method: 'post',
+    body: userInfo,
+    headers: {
+      'Content-type': 'application/json; charset=utf-8',
+    },
+  };
+  return request(url, options);
+}
+export function getAllCollectedCourse(name) {
+  let url = 'api/course/collected?userName='+name;
   let options = {
     method: 'get',
     headers: {
@@ -30,40 +42,24 @@ export function getRootAndChild() {
   };
   return request(url, options);
 }
-export function getAllSimpleList() {
-  let url = 'api/poetry/simpleListAll';
+export function deleteCollectedCourse(userAndCourse) {
+  userAndCourse = JSON.stringify(userAndCourse);
+  let url = 'api/course/deleteCollected';
   let options = {
-    method: 'get',
+    method: 'post',
+    body: userAndCourse,
     headers: {
       'Content-type': 'application/json; charset=utf-8',
     },
   };
   return request(url, options);
 }
-export function getAllSimpleListByName(name) {
-  let url = 'api/poetry/simpleListByName?name='+name;
+export function commitStar(userCourseStar) {
+  userCourseStar = JSON.stringify(userCourseStar);
+  let url = 'api/course/commitStar';
   let options = {
-    method: 'get',
-    headers: {
-      'Content-type': 'application/json; charset=utf-8',
-    },
-  };
-  return request(url, options);
-}
-export function getDetailById(id) {
-  let url = 'api/poetry/detail?id='+id;
-  let options = {
-    method: 'get',
-    headers: {
-      'Content-type': 'application/json; charset=utf-8',
-    },
-  };
-  return request(url, options);
-}
-export function getAllChildCategoryById(id) {
-  let url = 'api/poetry/detail/category?id='+id;
-  let options = {
-    method: 'get',
+    method: 'post',
+    body: userCourseStar,
     headers: {
       'Content-type': 'application/json; charset=utf-8',
     },

@@ -180,3 +180,4 @@ class RegistrationForm extends React.Component {
 const Register = Form.create({ name: 'register' })(RegistrationForm);
 
 export default Register;
+
